@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>获取用户基本信息</title>
+    <script type="text/javascript" language="JavaScript">
+        let agent = navigator.userAgent;
+        alert(agent);
+        if (agent.toUpperCase().indexOf("MICROMESSENGER") > 0) {
+            let search = window.location.search;
+            alert(search);
+            window.location.href =
+                "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx16887d8b919ef14b&redirect_uri=" +
+                "https%3A%2F%2Fcustom.dev.ccbuluo.cn%2Fcwfw-it%2Fpay%2Fwx.html" +
+                "&response_type=code&scope=snsapi_base&state=" + search + "#wechat_redirect"
+        } else {
+
+        }
+
+    </script>
+</head>
+
+<body>
+获取用户基本信息111
+</body>
+
+</html>

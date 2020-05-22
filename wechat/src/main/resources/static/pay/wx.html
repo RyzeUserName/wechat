@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>确认交易</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body onload="init()">
+
+<div id="wrong" class="dgllb_slys">
+<p> 非法请求，可能请求支付的订单已过期，或重新进入订单页面查看是否支付成功</p>
+</div>
+
+<div class="container-fluid" id="right">
+        <hgroup class="text-center p-1l">
+            <span><%=record.getPayName() == null ? "" : record.getPayName()%></span>
+            <h1 class="text-deep-orange m-0" style="font-size:72px;"><strong><%=new DecimalFormat("0.00").format(record.getPayAmount() / 100d) %></strong> <small style="font-size:16px;">元</small></h1>
+        </hgroup>
+        <section class="panel">
+
+            <div class="list-group">
+                <div class="list-group-item">
+                    <span class="text-muted pull-right">越野部落有限公司</span> 收款方
+                </div>
+                <div class="list-group-item">
+                    <span class="text-muted pull-right"><%=record.getPayName() == null ? "" : record.getPayName()%></span> 商品
+                </div>
+            </div>
+        </section>
+
+        <button type="submit" class="btn btn-primary btn-block" onclick="payJsapi()">
+            立即支付
+        </button>
+    </div>
+
+
+<!--<script type="text/javascript" language="JavaScript">-->
+<!--function init(){-->
+<!--	var isNull='<%=isNull%>';-->
+<!--	if(isNull=="1"){-->
+<!--		//alert(123);-->
+<!--		var wrongDiv=document.getElementById("wrong");-->
+<!--		 var rightDiv=document.getElementById("right");-->
+<!--		 wrongDiv.style.display="block";-->
+<!--		 rightDiv.style.display="none";//隐藏-->
+<!--	}else{-->
+<!--		document.getElementById("wrong").style.display="none";//隐藏-->
+<!--		document.getElementById("right").style.display="block";-->
+<!--	}-->
+<!--	/*-->
+<!--	wx.config({-->
+<!--	    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。-->
+<!--	    appId: '', // 必填，公众号的唯一标识-->
+<!--	    timestamp: , // 必填，生成签名的时间戳-->
+<!--	    nonceStr: '', // 必填，生成签名的随机串-->
+<!--	    signature: '',// 必填，签名-->
+<!--	    jsApiList: [] // 必填，需要使用的JS接口列表-->
+<!--	});*/-->
+<!--}-->
+<!--//var retCode = ${retcode};-->
+<!--function payJsapi() {-->
+<!--	WeixinJSBridge.invoke("getBrandWCPayRequest",-->
+<!--		{"appId":"<%=apiparams.getAppId()%>",-->
+<!--		"timeStamp":"<%=apiparams.getTimeStamp()%>",-->
+<!--		"nonceStr":"<%=apiparams.getNonceStr()%>",-->
+<!--		"package":"<%=apiparams.getPackAge()%>",-->
+<!--		"signType":"<%=apiparams.getSignType()%>",-->
+<!--		"paySign":"<%=apiparams.getPaySign()%>"},-->
+<!--		function(res) {-->
+<!--			//var code = res.err_code == null ? "" : res.err_code;-->
+<!--			//var msg = res.err_msg == null ? "" : res.err_msg;-->
+<!--			//var desc = res.err_desc == null ? "" : res.err_desc;-->
+<!--			//alert(code + " == " + msg + " :::: " + desc);-->
+<!--			setTimeout(function() {-->
+<!--				window.location.href = "${ctx}/golf/rent/payend?paySerial=<%=record.getPaySerial()%>";-->
+<!--			}, 1000);-->
+
+<!--		});-->
+<!--}-->
+<!--</script>-->
+</body>
+<!--<script type="text/javascript">-->
+<!--    var state = {-->
+<!--        title: "myCenter",-->
+<!--        url: window.location.href-->
+<!--    };-->
+<!--    window.history.pushState(state, state.title, state.url);-->
+<!--    window.addEventListener("popstate", function(e) {-->
+<!--	    // 新版中使用wx.closeWindow()方法-->
+<!--	    WeixinJSBridge.call('closeWindow');-->
+<!--	}, false);-->
+<!--</script>-->
+</html>
